@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" routerLink="/">
-      <img src="assets/Images/flowers.jpg" width="112" height="28">
+    <img src="assets/Images/logo-black.png" width="50" height="200">
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -45,7 +45,7 @@ import { Component } from '@angular/core';
     <div class="navbar-end">
       <div class="navbar-item" >
         <div class="buttons">
-          <a class="button is-primary" routerLink="/signup">
+          <a class="button is-success" routerLink="/signup">
             <strong>Sign up</strong>
           </a>
           <a class="button is-light" routerLink="/login">
