@@ -38,6 +38,13 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "src/karma.conf.js"
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -54,7 +61,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bulma/css/bulma.css",
+              "../Gardening-Helper/node_modules/bulma/css/bulma.css",
               "src/styles.scss"
             ],
             "scripts": []
