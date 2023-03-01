@@ -2,6 +2,7 @@
   "name": "gardening-helper",
   "version": "0.0.0",
   "scripts": {
+    "cypress:open": "cypress open",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -27,6 +28,7 @@
     "@angular/cli": "~15.1.3",
     "@angular/compiler-cli": "^15.1.0",
     "@types/node": "^18.11.18",
+    "karma-jasmine": "^5.1.0",
     "typescript": "~4.9.4"
   }
 }
