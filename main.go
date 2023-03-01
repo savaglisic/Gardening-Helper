@@ -12,12 +12,10 @@ import (
 )
 
 type Plant struct {
-	CommonName     string `json:"common_name"`
-	Slug           string `json:"slug"`
-	ScientificName string `json:"scientific_name"`
-	Description    string `json:"description"`
-	//Year             string `json:"year"`
-	//Bibliography     string `json:"bibliography"`
+	CommonName       string `json:"common_name"`
+	Slug             string `json:"slug"`
+	ScientificName   string `json:"scientific_name"`
+	Description      string `json:"description"`
 	Rank             string `json:"rank"`
 	FamilyCommonName string `json:"family_common_name"`
 	Observation      string `json:"observation"`
@@ -283,7 +281,8 @@ func vegetablePlant() {
 				fmt.Println("Ideal Temperature for the plant:", record[1])
 				fmt.Println("PH:", record[2])
 				fmt.Println("Soil: ", record[3])
-				fmt.Println("Waterlevel: ", record[4], '\n')
+				fmt.Println("Waterlevel: ", record[4])
+				fmt.Println("Space: ", record[5], '\n')
 
 				found = true
 				break
@@ -291,8 +290,10 @@ func vegetablePlant() {
 			}
 
 		}
+
 		if !found {
 			fmt.Println("Sorry, the vegetable you entered was not found in the database.")
+			break
 		}
 	}
 }
