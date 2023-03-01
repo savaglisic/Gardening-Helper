@@ -287,9 +287,10 @@ func vegetablePlant() {
 
 				found = true
 				break
-			}
-		}
 
+			}
+
+		}
 		if !found {
 			fmt.Println("Sorry, the vegetable you entered was not found in the database.")
 		}
