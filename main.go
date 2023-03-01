@@ -5,6 +5,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -12,16 +13,14 @@ import (
 )
 
 type Plant struct {
-	CommonName       string `json:"common_name"`
-	Slug             string `json:"slug"`
-	ScientificName   string `json:"scientific_name"`
-	Description      string `json:"description"`
-	Rank             string `json:"rank"`
-	FamilyCommonName string `json:"family_common_name"`
-	Observation      string `json:"observation"`
-	Vegetable        bool   `json:"vegetable"`
-	Genus            string `json:"genus"`
-	Family           string `json:"family"`
+	CommonName     string `json:"common_name"`
+	Slug           string `json:"slug"`
+	ScientificName string `json:"scientific_name"`
+	Description    string `json:"description"`
+	Rank           string `json:"rank"`
+	Vegetable      bool   `json:"vegetable"`
+	Genus          string `json:"genus"`
+	Family         string `json:"family"`
 }
 
 // PlantsResponse is a struct that represents the response from the Trefle API
@@ -66,7 +65,7 @@ func main() {
 		case "4":
 			viewMyPlants()
 		case "5":
-			vegetablePlant()
+			vegetablePlant(inputBuf io.Reader, outputBuf io.Writer)
 		case "6":
 			fmt.Println()
 			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
@@ -130,21 +129,21 @@ func searchPlant() {
 		fmt.Printf("Scientific Name: %s\n", plant.ScientificName)
 		fmt.Printf("Slug: %s\n", plant.Slug)
 		fmt.Printf("Rank: %s\n", plant.Rank)
-		fmt.Println("Description: ", plant.Description)
-
-		fmt.Println("Family common name: ", plant.FamilyCommonName)
-
-		fmt.Printf("Observation: %s\n", plant.Observation)
+		fmt.Println("Genus: ", plant.Genus)
+		fmt.Println("Family common name: ", plant.Family)
 		fmt.Printf("Is Vegetable: %t\n", plant.Vegetable)
+		fmt.Println()
 
 	}
 	// Prompt the user to add the plant to their garden
-	fmt.Println("Would you like to add any of these plants to your garden? (yes/no)")
+	fmt.Println()
+	fmt.Print("Would you like to add any of these plants to your garden? (yes/no)")
 	bufio.NewReader(os.Stdin)
 	addPlantChoice, _ := reader.ReadString('\n')
 	addPlantChoice = strings.TrimSpace(addPlantChoice)
 
 	if addPlantChoice == "yes" {
+		fmt.Println()
 		fmt.Println("Enter the common name of the plant you would like to add:")
 		reader := bufio.NewReader(os.Stdin)
 		selectedPlantName, _ := reader.ReadString('\n')
@@ -246,7 +245,7 @@ func editPlant() {
 	fmt.Println()
 }
 
-func vegetablePlant() {
+func vegetablePlant(inputBuf io.Reader, outputBuf io.Writer) {
 	// Read the CSV file
 	file, err := os.Open("vegetables.csv")
 	if err != nil {
@@ -262,11 +261,14 @@ func vegetablePlant() {
 		return
 	}
 
+	scanner := bufio.NewScanner(os.Stdin)
+
 	for {
 		// Ask the user for a vegetable to search for
 		fmt.Print("Enter a vegetable to search for (or 'q' to quit): ")
-		scanner := bufio.NewScanner(os.Stdin)
-		scanner.Scan()
+		if !scanner.Scan() {
+			return
+		}
 		searchTerm := scanner.Text()
 
 		if searchTerm == "q" {
@@ -282,21 +284,19 @@ func vegetablePlant() {
 				fmt.Println("PH:", record[2])
 				fmt.Println("Soil: ", record[3])
 				fmt.Println("Waterlevel: ", record[4])
-				fmt.Println("Space: ", record[5], '\n')
+				fmt.Println("Space: ", record[5])
 
 				found = true
 				break
-
 			}
-
 		}
 
 		if !found {
 			fmt.Println("Sorry, the vegetable you entered was not found in the database.")
-			break
 		}
 	}
 }
+
 
 func savePlant(plant Plant) error {
 	// Open the file for appending
@@ -357,10 +357,10 @@ func viewMyPlants() {
 			fmt.Printf("  Scientific name: %s\n", plant.ScientificName)
 			fmt.Printf("  Description: %s\n", plant.Description)
 			fmt.Printf("  Genus: %s\n", plant.Genus)
-			fmt.Printf("  Family common name: %s\n", plant.FamilyCommonName)
+			fmt.Printf("  Family common name: %s\n", plant.Family)
 			fmt.Printf("  Is vegetable: %t\n", plant.Vegetable)
 			fmt.Printf("  Rank: %s\n", plant.Rank)
-			fmt.Printf("  Observation: %s\n", plant.Observation)
+			//	fmt.Printf("  Observation: %s\n", plant.Observation)
 			fmt.Println()
 		}
 	}

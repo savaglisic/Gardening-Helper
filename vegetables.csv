@@ -1,46 +1,28 @@
-Name,Temperature,PH,Soil,Waterlevel,Space  
-Raddish,31.0761254,7.5,Well-drained Sandy  Soil,High,0.028
+Name,Temperature,PH,Soil,Waterlevel,Space
+Raddish,31.0761254,7.5,Well-drained Sandy Soil,High,0.028
 Beet,28.0186276,7.2,Well drained Carbonic Soil,Moderate,0.035
 Bitter Guard,33.1345321,6.5,Well-drained Carbonic Soil,Moderate,1.54
 Tomato,28.2442124,6.5,Well drained Loamy Sandy Soil,Low,0.0822
-Capsicum,31.3412566,6.5,Well-drained Loamy Soil ,Moderate,0.165
+Capsicum,31.3412566,6.5,Well-drained Loamy Soil,Moderate,0.165
 Cucumber,30.1453221,10.5,Well-drained Carbonic Soil,Low,1.5
 Pumpkin,32.3419233,6.5,Well drained Carbonic Soil,High,0.5
 Beans,32.3717724,6.4,Well drained Loamy Sandy Soil,High,0.07522
 Squash,31.3444221,9.5,Well drained Carbonic Soil,Moderate,0.062
 Snake Gouard,33.0123762,6.6,Well drained carbonic soil,High,5.12
-Ridged Gouard,25.3432014,6,Well drained  Loamy Sandy Soil,Moderate,5.1
+Ridged Gouard,25.3432014,6,Well drained Loamy Sandy Soil,Moderate,5.1
 Chilli,27.5132512,7.5,Well drained Loamy Clay Soil,High,0.363
 Kankun,32.2652081,6.2,Moisturized Soil,Moderate,1.82
-Mukunuwenna,33.5412703,7.5,Well drained soil ,Low,0.025
-Gotukola,36.2771873,6.5,Well drained   soil,Moderate,0.04
+Mukunuwenna,33.5412703,7.5,Well drained soil,Low,0.025
+Gotukola,36.2771873,6.5,Well drained soil,Moderate,0.04
 Sweet Potato,35.3642797,6.2,Well drained Loamy Sandy Soil,High,0.22
 Spinach,35.3642797,6.1,Moisturized Soil,Low,0.02252
-Turmeric,33.2663521,6.2,Well drained Loamy  Soil,High,0.09
+Turmeric,33.2663521,6.2,Well drained Loamy Soil,High,0.09
 Ginger,34.1572175,10,Well drained Loamy Sandy Soil,High,4.0625
 Kathurumurunga,37.5413075,10,Well drained Carbonic Soil,Moderate,9
-Eggplant,33.5372313,9.8,Light Well drained  Soil,Moderate,4.81
+Eggplant,33.5372313,9.8,Light Well drained Soil,Moderate,4.81
 nol khol,37.7102987,9.5,Well drained Carbonic Soil,Moderate,4.03
 Cassava,32.2431898,10,Well drained Carbonic Soil,High,4.81
 Guava,35.0132398,9.5,Well drained Carbonic Soil,Moderate,34
 Mangoostenes,31.3103498,7,Well drained Carbonic Soil,Moderate,104
 Avacado,32.1323782,9.7,Well drained Loamy Soil,High,56
-Watermelon,35.2173367,10.5,Well drained Carbonic Loamy Sandy Soil,Moderate,4.5
-Papaya,36.2779721,10,Well drained Carbonic Soil,High,204
-Karapincha,31.2412083,10.4,Well drained  acidic soil,Moderate,20
-Rampe,34.1562081,10.8,Well drained Loamy Soil,High,14
-Cinnamon,33.5412702,14,Loamy Sandy Soil,Moderate,4.025
-Okra,30.2771871,6,Well drained Carbonic soil,High,4.54
-Pepper,30.3642794,6,Well drained Loamy Soil,Moderate,5.76
-Innala,31.2663521,11,Well drained Loamy Sandy Soil,Moderate,4.03
-Thibbatu,30.1572176,6,Well drained Loamy Soil,Moderate,5
-Sarana,36.5413074,10.5,Well drained Soil,High,4.01
-Ela batu,33.5372313,9.7,Well drained Light Loamy Sand,Moderate,4.54
-Kohila,37.7102987,10,Well drained Soil,Moderate,4.09
-Thumba Karawila,28.2431898,5.5,Well drained Carbonic soil,Moderate,1
-Lime,35.0132398,10.5,Loamy Sandy Soil,High,349
-Orange,31.3103498,11,Loamy Sandy Soil,High,20
-Star Fruit,32.1323782,9.5,Well drained Loamy Soil,High,24
-Rambutan,28.2173367,4.5,Well drained Loamy Soil,High,100
-Pani Dodam,34.2779721,9,Well drained Carbonic Soil,High,24
-Carrot,21.3781573,10,Carbonic Loamy Sandy Soil,High,4.05
+Watermelon,35.2173367,10.5,Well drained Carbonic,Moderate,0.5
