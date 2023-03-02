@@ -5,7 +5,6 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -65,7 +64,7 @@ func main() {
 		case "4":
 			viewMyPlants()
 		case "5":
-			vegetablePlant(inputBuf io.Reader, outputBuf io.Writer)
+			vegetablePlant()
 		case "6":
 			fmt.Println()
 			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
@@ -245,7 +244,7 @@ func editPlant() {
 	fmt.Println()
 }
 
-func vegetablePlant(inputBuf io.Reader, outputBuf io.Writer) {
+func vegetablePlant() {
 	// Read the CSV file
 	file, err := os.Open("vegetables.csv")
 	if err != nil {
@@ -296,7 +295,6 @@ func vegetablePlant(inputBuf io.Reader, outputBuf io.Writer) {
 		}
 	}
 }
-
 
 func savePlant(plant Plant) error {
 	// Open the file for appending
