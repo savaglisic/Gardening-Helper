@@ -1,0 +1,337 @@
+package main
+
+import (
+	"bufio"
+	"encoding/csv"
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strings"
+)
+
+type Plant struct {
+	CommonName       string `json:"common_name"`
+	Slug             string `json:"slug"`
+	ScientificName   string `json:"scientific_name"`
+	Description      string `json:"description"`
+	Rank             string `json:"rank"`
+	FamilyCommonName string `json:"family_common_name"`
+	Observation      string `json:"observation"`
+	Vegetable        bool   `json:"vegetable"`
+	Genus            string `json:"genus"`
+	Family           string `json:"family"`
+}
+
+// PlantsResponse is a struct that represents the response from the Trefle API
+type PlantsResponse struct {
+	Data []Plant `json:"data"`
+}
+
+// Garden map to store plants
+var Garden map[string]Plant
+
+func init() {
+	Garden = make(map[string]Plant)
+}
+
+func main() {
+	for {
+		/*
+			fmt.Println()
+			fmt.Println("Welcome to the Plant Database")
+
+			fmt.Println()
+			fmt.Println("1. Search for a plant")
+			fmt.Println("2. Add a plant to the garden")
+			fmt.Println("3. Edit a plant in the garden")
+			fmt.Println("4. View my plants")
+			fmt.Println("5. Would you like to plant veggies in the garden? ")
+			fmt.Println("6. Exit")
+			fmt.Println()
+
+			fmt.Print("Enter your choice: ")
+
+		*/
+
+		//reader := bufio.NewReader(os.Stdin)
+		//input, _ := reader.ReadString('\n')
+
+		input := os.Args[1]
+		input = strings.TrimSpace(input)
+
+		switch input {
+		case "1":
+			searchPlant()
+		case "2":
+			addPlant()
+		case "3":
+			editPlant()
+		case "4":
+			viewMyPlants()
+		case "5":
+			vegetablePlant()
+		case "6":
+			fmt.Println()
+			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
+			fmt.Println()
+
+			return
+		default:
+			fmt.Println("Invalid choice. Try again.")
+			fmt.Println()
+		}
+	}
+}
+
+func searchPlant() {
+	//fmt.Println()
+	//fmt.Print("Enter plant name: ")
+
+	//reader := bufio.NewReader(os.Stdin)
+	//input, _ := reader.ReadString('\n')
+	input := os.Args[2]
+
+	input = strings.TrimSpace(input)
+
+	// Build the URL to fetch information from the Trefle API
+	url := fmt.Sprintf("https://trefle.io/api/v1/plants/search?q=%s&token=eX8zkmOMqHh9Web_qr5vv917_0l2xkkWXo_oxq4wT4s", input)
+
+	response, err := http.Get(url)
+	if err != nil {
+		fmt.Println("Error fetching data from Trefle API:", err)
+		return
+	}
+	defer response.Body.Close()
+
+	// Check if the status code is in the 200s range
+	if response.StatusCode < 200 || response.StatusCode >= 300 {
+		fmt.Printf("Error: Got status code %d from Trefle API\n", response.StatusCode)
+		return
+	}
+
+	body, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		fmt.Println("Error reading response body:", err)
+		return
+	}
+
+	var plantsResponse PlantsResponse
+	err = json.Unmarshal(body, &plantsResponse)
+	if err != nil {
+		fmt.Println("Error unmarshaling JSON:", err)
+		return
+	}
+	// Check if there are any plants in the response
+	if len(plantsResponse.Data) == 0 {
+		fmt.Println("No plants found for the given name.")
+		return
+	}
+
+	// Loop through the plants in the response
+	for i, plant := range plantsResponse.Data {
+		if i > 10 {
+			os.Exit(0)
+		}
+
+		fmt.Printf("\nPlant %d\n", i+1)
+		fmt.Println("--------------")
+		fmt.Printf("Common Name: %s\n", plant.CommonName)
+		fmt.Printf("Scientific Name: %s\n", plant.ScientificName)
+		//fmt.Printf("Slug: %s\n", plant.Slug)
+		//fmt.Printf("Rank: %s\n", plant.Rank)
+		//fmt.Println("Description: ", plant.Description)
+
+		//fmt.Println("Family common name: ", plant.FamilyCommonName)
+
+		//fmt.Printf("Observation: %s\n", plant.Observation)
+		//fmt.Printf("Is Vegetable: %t\n", plant.Vegetable)
+
+	}
+	// Prompt the user to add the plant to their garden
+
+}
+func addPlant() {
+	fmt.Println()
+	fmt.Print("Enter plant name: ")
+	reader := bufio.NewReader(os.Stdin)
+	name, _ := reader.ReadString('\n')
+	name = strings.TrimSpace(name)
+
+	fmt.Print("Enter plant description: ")
+
+	var description strings.Builder
+	for {
+		line, _ := reader.ReadString('\n')
+		line = strings.TrimSpace(line)
+		if line == "." {
+			break
+		}
+		description.WriteString(line + "\n")
+	}
+
+	Garden[name] = Plant{
+		CommonName:  name,
+		Description: description.String(),
+	}
+
+	fmt.Println()
+	fmt.Println("Plant added to the garden successfully!")
+	fmt.Println()
+
+}
+
+func editPlant() {
+	fmt.Print("Enter the name of the plant you want to edit: ")
+	reader := bufio.NewReader(os.Stdin)
+	name, _ := reader.ReadString('\n')
+	name = strings.TrimSpace(name)
+
+	plant, found := Garden[name]
+	if !found {
+		fmt.Println("Plant not found.")
+		return
+	}
+
+	fmt.Print("Enter new description (press enter after each line, type '.' on a new line to stop):\n")
+	var descriptionLines []string
+	for {
+		reader = bufio.NewReader(os.Stdin)
+		descriptionLine, _ := reader.ReadString('\n')
+		descriptionLine = strings.TrimSpace(descriptionLine)
+
+		if descriptionLine == "." {
+			break
+		}
+
+		descriptionLines = append(descriptionLines, descriptionLine)
+	}
+
+	plant.Description = strings.Join(descriptionLines, "\n")
+	Garden[name] = plant
+
+	fmt.Println()
+	fmt.Println("Plant description updated successfully!")
+	fmt.Println()
+}
+
+func vegetablePlant() {
+	// Read the CSV file
+	file, err := os.Open("vegetables.csv")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+	defer file.Close()
+
+	reader := csv.NewReader(file)
+	records, err := reader.ReadAll()
+	if err != nil {
+		fmt.Println("Error reading CSV data:", err)
+		return
+	}
+
+	for {
+		// Ask the user for a vegetable to search for
+		fmt.Print("Enter a vegetable to search for (or 'q' to quit): ")
+		scanner := bufio.NewScanner(os.Stdin)
+		scanner.Scan()
+		searchTerm := scanner.Text()
+
+		if searchTerm == "q" {
+			break
+		}
+
+		// Search the records for a match
+		found := false
+		for _, record := range records {
+			if strings.ToLower(record[0]) == strings.ToLower(searchTerm) {
+				fmt.Println("Name:", record[0])
+				fmt.Println("Ideal Temperature for the plant:", record[1])
+				fmt.Println("PH:", record[2])
+				fmt.Println("Soil: ", record[3])
+				fmt.Println("Waterlevel: ", record[4])
+				fmt.Println("Space: ", record[5], '\n')
+
+				found = true
+				break
+
+			}
+
+		}
+
+		if !found {
+			fmt.Println("Sorry, the vegetable you entered was not found in the database.")
+			break
+		}
+	}
+}
+
+func savePlant(plant Plant) error {
+	// Open the file for appending
+	file, err := os.OpenFile("garden.json", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	// Encode the plant as JSON and write it to the file
+	encoder := json.NewEncoder(file)
+	if err := encoder.Encode(plant); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func retrieveMyPlants() ([]Plant, error) {
+	var plants []Plant
+
+	// Open the file for reading
+	file, err := os.Open("garden.json")
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	// Decode the file contents as JSON and append the plants to the slice
+	decoder := json.NewDecoder(file)
+	for decoder.More() {
+		var plant Plant
+		if err := decoder.Decode(&plant); err != nil {
+			return nil, err
+		}
+		plants = append(plants, plant)
+	}
+
+	return plants, nil
+}
+
+func viewMyPlants() {
+	// Retrieve all plants added by the current user from the database or file
+	myPlants, err := retrieveMyPlants()
+	if err != nil {
+		fmt.Println("Error retrieving plants:", err)
+		return
+	}
+
+	if len(myPlants) == 0 {
+		fmt.Println("You haven't added any plants yet.")
+	} else {
+		fmt.Println("Your plants:")
+		for _, plant := range myPlants {
+			//fmt.Printf("- %s (%s):\n", plant.Name, plant.Species)
+			fmt.Printf("  Common name: %s\n", plant.CommonName)
+			fmt.Printf("  Slug: %s\n", plant.Slug)
+			fmt.Printf("  Scientific name: %s\n", plant.ScientificName)
+			fmt.Printf("  Description: %s\n", plant.Description)
+			fmt.Printf("  Genus: %s\n", plant.Genus)
+			fmt.Printf("  Family common name: %s\n", plant.FamilyCommonName)
+			fmt.Printf("  Is vegetable: %t\n", plant.Vegetable)
+			fmt.Printf("  Rank: %s\n", plant.Rank)
+			fmt.Printf("  Observation: %s\n", plant.Observation)
+			fmt.Println()
+		}
+	}
+}
