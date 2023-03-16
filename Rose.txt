@@ -1,3 +1,0 @@
-Plant Name: Rose
-Plant Progress: about to get flower
-Image Path: https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Rosa_Precious_platinum.jpg/1024px-Rosa_Precious_platinum.jpg

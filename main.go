@@ -52,7 +52,8 @@ func main() {
 		fmt.Println("4. View my plants")
 		fmt.Println("5. Would you like to plant veggies in the garden? ")
 		fmt.Println("6. Plant tracker")
-		fmt.Println("7. Exit")
+		fmt.Println("7. Would you like to see a list of the plants you are currently tracking?  ")
+		fmt.Println("8. Exit")
 		fmt.Println()
 
 		fmt.Print("Enter your choice: ")
@@ -74,7 +75,10 @@ func main() {
 			vegetablePlant()
 		case "6":
 			plantTracker()
+
 		case "7":
+			viewTrackPlants()
+		case "8":
 			fmt.Println()
 			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
 			fmt.Println()
@@ -382,6 +386,21 @@ func plantTracker() {
 	plantName, _ := reader.ReadString('\n')
 	plantName = strings.TrimSpace(plantName)
 
+	// Check if the user wants to remove the plant
+	fmt.Print("Do you want to remove the plant from your tracking? (y/n): ")
+	removePlant, _ := reader.ReadString('\n')
+	removePlant = strings.TrimSpace(removePlant)
+
+	if removePlant == "y" {
+		fileName := plantName + ".txt"
+		if err := os.Remove(fileName); err != nil {
+			fmt.Println("Failed to remove plant:", err)
+			return
+		}
+		fmt.Println("Plant removed successfully!")
+		return
+	}
+
 	// Prompt user to enter plant progress
 	fmt.Print("Enter the progress of your plant: ")
 	plantProgress, _ := reader.ReadString('\n')
@@ -430,4 +449,47 @@ func plantTracker() {
 		fmt.Fprintln(file, "Notes:", notes)
 	}
 
+	fmt.Println("Plant added successfully!")
+}
+
+func viewTrackPlants() {
+	files, err := ioutil.ReadDir(".")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var plantFiles []string
+	for _, file := range files {
+		if strings.HasSuffix(file.Name(), ".txt") {
+			plantFiles = append(plantFiles, file.Name())
+		}
+	}
+
+	if len(plantFiles) == 0 {
+		fmt.Println("You haven't added any plants yet.")
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Print("Do you want to add a plant to track? (y/n): ")
+		addPlant, _ := reader.ReadString('\n')
+		addPlant = strings.TrimSpace(addPlant)
+
+		if addPlant == "y" {
+			plantTracker()
+			fmt.Println("Plant added successfully!")
+		} else {
+			fmt.Println("No plants to display.")
+		}
+	} else {
+		for _, file := range plantFiles {
+			fmt.Println("===============================")
+			fmt.Println("Plant Details for:", strings.TrimSuffix(file, ".txt"))
+
+			data, err := ioutil.ReadFile(file)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Print(string(data))
+			fmt.Println("===============================")
+		}
+	}
 }
