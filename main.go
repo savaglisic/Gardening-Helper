@@ -4,11 +4,17 @@ import (
 	"bufio"
 	"encoding/csv"
 	"encoding/json"
+	"log"
+
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	//"strconv"
 	"strings"
+	//"time"
+	//"github.com/tarm/serial"
 )
 
 type Plant struct {
@@ -45,7 +51,8 @@ func main() {
 		fmt.Println("3. Edit a plant in the garden")
 		fmt.Println("4. View my plants")
 		fmt.Println("5. Would you like to plant veggies in the garden? ")
-		fmt.Println("6. Exit")
+		fmt.Println("6. Plant tracker")
+		fmt.Println("7. Exit")
 		fmt.Println()
 
 		fmt.Print("Enter your choice: ")
@@ -66,6 +73,8 @@ func main() {
 		case "5":
 			vegetablePlant()
 		case "6":
+			plantTracker()
+		case "7":
 			fmt.Println()
 			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
 			fmt.Println()
@@ -362,4 +371,63 @@ func viewMyPlants() {
 			fmt.Println()
 		}
 	}
+}
+
+func plantTracker() {
+	fmt.Println("Welcome to the Plant Tracker")
+
+	// Prompt user to enter plant name
+	fmt.Print("Enter the name of the plant you want to track: ")
+	reader := bufio.NewReader(os.Stdin)
+	plantName, _ := reader.ReadString('\n')
+	plantName = strings.TrimSpace(plantName)
+
+	// Prompt user to enter plant progress
+	fmt.Print("Enter the progress of your plant: ")
+	plantProgress, _ := reader.ReadString('\n')
+	plantProgress = strings.TrimSpace(plantProgress)
+
+	// Prompt user to upload an image of the plant
+	fmt.Print("Do you want to upload an image of your plant? (y/n): ")
+	uploadImage, _ := reader.ReadString('\n')
+	uploadImage = strings.TrimSpace(uploadImage)
+
+	var imagePath string
+	if uploadImage == "y" {
+		fmt.Print("Enter the path to the image: ")
+		imagePath, _ = reader.ReadString('\n')
+		imagePath = strings.TrimSpace(imagePath)
+	}
+
+	// Prompt user to add notes about the plant
+	fmt.Print("Do you want to add any notes about your plant? (y/n): ")
+	addNotes, _ := reader.ReadString('\n')
+	addNotes = strings.TrimSpace(addNotes)
+
+	var notes string
+	if addNotes == "y" {
+		fmt.Print("Enter your notes: ")
+		notes, _ = reader.ReadString('\n')
+		notes = strings.TrimSpace(notes)
+	}
+
+	// Save plant information to a file
+	fileName := plantName + ".txt"
+	file, err := os.Create(fileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	fmt.Fprintln(file, "Plant Name:", plantName)
+	fmt.Fprintln(file, "Plant Progress:", plantProgress)
+
+	if uploadImage == "y" {
+		fmt.Fprintln(file, "Image Path:", imagePath)
+	}
+
+	if addNotes == "y" {
+		fmt.Fprintln(file, "Notes:", notes)
+	}
+
 }
