@@ -520,14 +520,14 @@ func purchaseProducts() {
 	case "2":
 		fmt.Println("Here are some links to purchase fertilizers:")
 		fmt.Println("Home Depot: https://www.homedepot.com/b/Outdoors-Garden-Center-Plant-Care-Fertilizers/N-5yc1vZbx6k")
-		fmt.Println("Lowe's: https://www.lowes.com/pl/Fertilizer-Soil-Amendments-Plants-planters-Lawn-garden/4294607829")
-		fmt.Println("Ace Hardware: https://www.acehardware.com/departments/lawn-and-garden/plant-food-and-fertilizer")
+		fmt.Println("Lowe's:https://www.lowes.com/pl/Lawn-fertilizer-Lawn-care-Lawn-garden/2610376442062?cm_mmc=src-_-c-_-prd-_-lwn-_-ggl-_-B_LWN_107_Fertilizer-_-lowe%27s%20garden%20fertilizer-_-0-_-0-_-0&ds_rl=1286981&gclid=CjwKCAjw_MqgBhAGEiwAnYOAej7G8i7vzeYLKeKTIv9a_NtLRhe9WiJJ2denEEQAHG2bNxwoqbf09BoCXm4QAvD_BwE&gclsrc=aw.ds")
+		fmt.Println("Ace Hardware:https://www.acehardware.com/departments/lawn-and-garden/gardening/flower-and-plant-fertilizer")
 
 	case "3":
 		fmt.Println("Here are some links to purchase garden tools:")
 		fmt.Println("Home Depot: https://www.homedepot.com/b/Outdoors-Garden-Center-Garden-Tools/N-5yc1vZc5r5")
-		fmt.Println("Lowe's: https://www.lowes.com/pl/Garden-tools-Lawn-garden-hand-tools-Outdoors/4294415735")
-		fmt.Println("Amazon: https://www.amazon.com/gardening-tools/b?ie=UTF8&node=553944")
+		fmt.Println("Lowe's: https://www.lowes.com/c/Lawn-garden-hand-tools-Outdoor-tools-equipment-Outdoors?cm_mmc=src-_-c-_-prd-_-sol-_-ggl-_-B_SOL_242_Tools-Watering-Storage-Sheds-_-lowe%27s%20garden%20tool-_-0-_-0-_-0&ds_rl=1286981&gclid=CjwKCAjw_MqgBhAGEiwAnYOAekiryeemRNGXJEffwi54w3cuckgfS70WJzl0ETUouzL7KXdyCcV9RBoCmlMQAvD_BwE&gclsrc=aw.ds")
+		fmt.Println("Amazon:https://www.amazon.com/s?k=gardening+tools&crid=1GNS82V0SB0KF&sprefix=gardening+tool%2Caps%2C158&ref=nb_sb_noss_1")
 		// case "4":
 		//  fmt.Println("Here are some links to purchase other garden products:")
 		// Insert relevant links here
