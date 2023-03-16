@@ -53,7 +53,8 @@ func main() {
 		fmt.Println("5. Would you like to plant veggies in the garden? ")
 		fmt.Println("6. Plant tracker")
 		fmt.Println("7. Would you like to see a list of the plants you are currently tracking?  ")
-		fmt.Println("8. Exit")
+		fmt.Println("8. Purchase seeds and garden products")
+		fmt.Println("9. Exit")
 		fmt.Println()
 
 		fmt.Print("Enter your choice: ")
@@ -79,6 +80,8 @@ func main() {
 		case "7":
 			viewTrackPlants()
 		case "8":
+			purchaseProducts()
+		case "9":
 			fmt.Println()
 			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
 			fmt.Println()
@@ -491,5 +494,44 @@ func viewTrackPlants() {
 			fmt.Print(string(data))
 			fmt.Println("===============================")
 		}
+	}
+}
+
+func purchaseProducts() {
+	fmt.Println("What do you want to purchase?")
+	fmt.Println("1. Seeds")
+	fmt.Println("2. Fertilizers")
+	fmt.Println("3. Garden tools")
+	//fmt.Println("4. Other products")
+
+	reader := bufio.NewReader(os.Stdin)
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
+
+	switch input {
+	case "1":
+		fmt.Println("Here are some links to purchase seeds:")
+		fmt.Println("Burpee: https://www.burpee.com/")
+		fmt.Println("Johnny's Selected Seeds: https://www.johnnyseeds.com/")
+		fmt.Println("Seed Savers Exchange: https://www.seedsavers.org/")
+		fmt.Println("Baker Creek Heirloom Seeds: https://www.rareseeds.com/")
+		fmt.Println("Park Seed: https://parkseed.com/")
+
+	case "2":
+		fmt.Println("Here are some links to purchase fertilizers:")
+		fmt.Println("Home Depot: https://www.homedepot.com/b/Outdoors-Garden-Center-Plant-Care-Fertilizers/N-5yc1vZbx6k")
+		fmt.Println("Lowe's: https://www.lowes.com/pl/Fertilizer-Soil-Amendments-Plants-planters-Lawn-garden/4294607829")
+		fmt.Println("Ace Hardware: https://www.acehardware.com/departments/lawn-and-garden/plant-food-and-fertilizer")
+
+	case "3":
+		fmt.Println("Here are some links to purchase garden tools:")
+		fmt.Println("Home Depot: https://www.homedepot.com/b/Outdoors-Garden-Center-Garden-Tools/N-5yc1vZc5r5")
+		fmt.Println("Lowe's: https://www.lowes.com/pl/Garden-tools-Lawn-garden-hand-tools-Outdoors/4294415735")
+		fmt.Println("Amazon: https://www.amazon.com/gardening-tools/b?ie=UTF8&node=553944")
+		// case "4":
+		//  fmt.Println("Here are some links to purchase other garden products:")
+		// Insert relevant links here
+	default:
+		fmt.Println("Invalid choice. Try again.")
 	}
 }
