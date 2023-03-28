@@ -41,56 +41,57 @@ func init() {
 }
 
 func main() {
-	for {
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: go run main.go [command]")
 		fmt.Println()
-		fmt.Println("Welcome to the Plant Database")
-
+		fmt.Println("Available commands:")
+		fmt.Println("  search  Search for a plant")
+		fmt.Println("  add     Add a plant to the garden")
+		fmt.Println("  edit    Edit a plant in the garden")
+		fmt.Println("  view    View my plants")
+		fmt.Println("  veggie  Would you like to plant veggies in the garden? ")
+		fmt.Println("  track   Plant tracker")
+		fmt.Println("  list    Would you like to see a list of the plants you are currently tracking?  ")
+		fmt.Println("  purchase Purchase seeds and garden products")
+		fmt.Println("  help    Show this help message")
 		fmt.Println()
-		fmt.Println("1. Search for a plant")
-		fmt.Println("2. Add a plant to the garden")
-		fmt.Println("3. Edit a plant in the garden")
-		fmt.Println("4. View my plants")
-		fmt.Println("5. Would you like to plant veggies in the garden? ")
-		fmt.Println("6. Plant tracker")
-		fmt.Println("7. Would you like to see a list of the plants you are currently tracking?  ")
-		fmt.Println("8. Purchase seeds and garden products")
-		fmt.Println("9. Exit")
+		return
+	}
+
+	switch os.Args[1] {
+	case "search":
+		searchPlant()
+	case "add":
+		addPlant()
+	case "edit":
+		editPlant()
+	case "view":
+		viewMyPlants()
+	case "veggie":
+		vegetablePlant()
+	case "track":
+		plantTracker()
+	case "list":
+		viewTrackPlants()
+	case "purchase":
+		purchaseProducts()
+	case "help":
+		fmt.Println("Usage: go run main.go [command]")
 		fmt.Println()
-
-		fmt.Print("Enter your choice: ")
-
-		reader := bufio.NewReader(os.Stdin)
-		input, _ := reader.ReadString('\n')
-		input = strings.TrimSpace(input)
-
-		switch input {
-		case "1":
-			searchPlant()
-		case "2":
-			addPlant()
-		case "3":
-			editPlant()
-		case "4":
-			viewMyPlants()
-		case "5":
-			vegetablePlant()
-		case "6":
-			plantTracker()
-
-		case "7":
-			viewTrackPlants()
-		case "8":
-			purchaseProducts()
-		case "9":
-			fmt.Println()
-			fmt.Println("Thank you for taking the time to search through 100,000 plants to find the one you were looking for!")
-			fmt.Println()
-
-			return
-		default:
-			fmt.Println("Invalid choice. Try again.")
-			fmt.Println()
-		}
+		fmt.Println("Available commands:")
+		fmt.Println("  search  Search for a plant")
+		fmt.Println("  add     Add a plant to the garden")
+		fmt.Println("  edit    Edit a plant in the garden")
+		fmt.Println("  view    View my plants")
+		fmt.Println("  veggie  Would you like to plant veggies in the garden? ")
+		fmt.Println("  track   Plant tracker")
+		fmt.Println("  list    Would you like to see a list of the plants you are currently tracking?  ")
+		fmt.Println("  purchase Purchase seeds and garden products")
+		fmt.Println("  help    Show this help message")
+		fmt.Println()
+	default:
+		fmt.Println("Invalid command. Use 'help' command to see the available commands.")
+		fmt.Println()
 	}
 }
 
