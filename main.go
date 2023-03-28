@@ -136,23 +136,22 @@ func searchPlant() {
 		return
 	}
 
-	// Loop through the plants in the response
-	for i, plant := range plantsResponse.Data {
-		fmt.Printf("\nPlant %d\n", i+1)
-		fmt.Println("--------------")
-		fmt.Printf("Common Name: %s\n", plant.CommonName)
-		fmt.Printf("Scientific Name: %s\n", plant.ScientificName)
-		fmt.Printf("Slug: %s\n", plant.Slug)
-		fmt.Printf("Rank: %s\n", plant.Rank)
-		fmt.Println("Genus: ", plant.Genus)
-		fmt.Println("Family common name: ", plant.Family)
-		fmt.Printf("Is Vegetable: %t\n", plant.Vegetable)
-		fmt.Println()
+	// Print the first plant in the response
+	plant := plantsResponse.Data[0]
+	fmt.Printf("\nPlant\n")
+	fmt.Println("--------------")
+	fmt.Printf("Common Name: %s\n", plant.CommonName)
+	fmt.Printf("Scientific Name: %s\n", plant.ScientificName)
+	fmt.Printf("Slug: %s\n", plant.Slug)
+	fmt.Printf("Rank: %s\n", plant.Rank)
+	fmt.Println("Genus: ", plant.Genus)
+	fmt.Println("Family common name: ", plant.Family)
+	fmt.Printf("Is Vegetable: %t\n", plant.Vegetable)
+	fmt.Println()
 
-	}
 	// Prompt the user to add the plant to their garden
 	fmt.Println()
-	fmt.Print("Would you like to add any of these plants to your garden? (yes/no)")
+	fmt.Print("Would you like to add this plant to your garden? (yes/no)")
 	bufio.NewReader(os.Stdin)
 	addPlantChoice, _ := reader.ReadString('\n')
 	addPlantChoice = strings.TrimSpace(addPlantChoice)
@@ -164,27 +163,17 @@ func searchPlant() {
 		selectedPlantName, _ := reader.ReadString('\n')
 		selectedPlantName = strings.TrimSpace(selectedPlantName)
 
-		var selectedPlant Plant
-		foundPlant := false
-		for _, plant := range plantsResponse.Data {
-			if plant.CommonName == selectedPlantName {
-				selectedPlant = plant
-				foundPlant = true
-				break
-			}
-		}
-
-		if foundPlant {
+		if plant.CommonName == selectedPlantName {
 			// Save the plant to the file
-			if err := savePlant(selectedPlant); err != nil {
+			if err := savePlant(plant); err != nil {
 				fmt.Println("Error saving plant:", err)
 				return
 			}
 
 			// Add the plant to the garden map
-			Garden[selectedPlant.CommonName] = Plant{
-				CommonName:  selectedPlant.CommonName,
-				Description: selectedPlant.Description,
+			Garden[plant.CommonName] = Plant{
+				CommonName:  plant.CommonName,
+				Description: plant.Description,
 			}
 			fmt.Println("Plant added to the garden successfully!")
 		} else {
@@ -192,9 +181,12 @@ func searchPlant() {
 		}
 
 	} else {
+
 		fmt.Println("Thank you for taking the time to search for the perfect plant, and We hope you have found the one you were searching for!  ")
 		fmt.Println()
+
 	}
+
 }
 func addPlant() {
 	fmt.Println()
