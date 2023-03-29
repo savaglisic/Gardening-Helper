@@ -9,29 +9,28 @@ import (
 	"testing"
 )
 
-/*
 func TestSearchPlant(t *testing.T) {
 	// Prepare test data
-	input := "rose"
+	//input := "rose"
 	expectedOutput := "Common Name: rose\nScientific Name: Rosa\nSlug: rosa\nRank: genus\nGenus:  Rosa\nFamily common name:  Rosaceae\nIs Vegetable: false"
 
 	// Set up reader to simulate user input
-	reader := bufio.NewReader(strings.NewReader("yes\nrose\n"))
+	bufio.NewReader(strings.NewReader("yes\nrose\n"))
 
 	// Replace stdout with a buffer to capture output
 	stdout := &bytes.Buffer{}
 	oldStdout := os.Stdout
-	os.Stdout = stdout
+	//os.Stdout = stdout
 	defer func() { os.Stdout = oldStdout }()
 
 	// Call the function being tested
-	searchPlant(reader, input)
+	searchPlant()
 
 	// Compare actual output with expected output
 	if !strings.Contains(stdout.String(), expectedOutput) {
 		t.Errorf("searchPlant() output = %q; expected %q", stdout.String(), expectedOutput)
 	}
-}*/
+}
 
 /*func TestAddPlant(t *testing.T) {
 	// Prepare test data
@@ -113,14 +112,31 @@ func TestAddPlant(t *testing.T) {
 	// Test case 1: add a plant with a valid name and description
 	input1 := "rose\ngood.\ncool.\n."
 	expectedOutput1 := "Enter plant name: Enter plant description: Plant added to the garden successfully!\n\n"
-	reader1 := bufio.NewReader(strings.NewReader(input1))
+	bufio.NewReader(strings.NewReader(input1))
 	output1 := &bytes.Buffer{}
 	log.SetOutput(output1)
-	addPlant(reader1)
+	addPlant()
 	if _, ok := Garden["rose"]; !ok {
 		t.Errorf("Failed to add plant with name 'rose'")
 	}
 	if output1.String() != expectedOutput1 {
 		t.Errorf("Output incorrect. Expected '%s', but got '%s'", expectedOutput1, output1.String())
+	}
+}
+
+func TestPurchaseProducts(t *testing.T) {
+	input := "1\n"
+	expectedOutput := "Here are some links to purchase seeds:\nBurpee: https://www.burpee.com/\nJohnny's Selected Seeds: https://www.johnnyseeds.com/\nSeed Savers Exchange: https://www.seedsavers.org/\nBaker Creek Heirloom Seeds: https://www.rareseeds.com/\nPark Seed: https://parkseed.com/\n"
+	r := strings.NewReader(input)
+	bufio.NewReader(r)
+	w := new(bytes.Buffer)
+	//out :=
+
+	// Call function
+	purchaseProducts()
+
+	// Test output
+	if w.String() != expectedOutput {
+		t.Errorf("Test failed. Expected:\n%s\n, but got:\n%s", expectedOutput, w.String())
 	}
 }
