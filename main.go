@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	//"bytes"
 	"encoding/csv"
 	"encoding/json"
 	"log"
@@ -53,6 +54,7 @@ func main() {
 		fmt.Println("  track   Plant tracker")
 		fmt.Println("  list    Would you like to see a list of the plants you are currently tracking?  ")
 		fmt.Println("  purchase Purchase seeds and garden products")
+		//	fmt.Println("  soilandnutri soil and nutri recommendation for your plant")
 		fmt.Println("  help    Show this help message")
 		fmt.Println()
 		return
@@ -75,6 +77,10 @@ func main() {
 		viewTrackPlants()
 	case "purchase":
 		purchaseProducts()
+	//case "soilandnutri":
+
+	//soilAndNutriRecommendation()
+
 	case "help":
 		fmt.Println("Usage: go run main.go [command]")
 		fmt.Println()
@@ -87,6 +93,7 @@ func main() {
 		fmt.Println("  track   Plant tracker")
 		fmt.Println("  list    Would you like to see a list of the plants you are currently tracking?  ")
 		fmt.Println("  purchase Purchase seeds and garden products")
+		fmt.Println("  soilandnutri soil and nutri recommendation for your plant")
 		fmt.Println("  help    Show this help message")
 		fmt.Println()
 	default:
