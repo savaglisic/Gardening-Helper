@@ -7,20 +7,32 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./mygarden.component.css']
 })
 export class MygardenComponent {
-  searchTerm!: string;
-  searchResults: any[] = []; // Initialize to empty array
+  searchQuery: string = '';
+  searchResults: any[] = [];
+  myGarden: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  search() {
-    this.http.get<any[]>('http://127.0.0.1:5000/api/search/' + this.searchTerm).subscribe(
-      data => {
-        this.searchResults = data;
+  searchPlants() {
+    this.http.get(`http://127.0.0.1:5000/search?query=${this.searchQuery}`).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.searchResults = response.data;
       },
-      error => {
+      (error) => {
         console.error(error);
+        alert("An error occurred. Please try again.");
       }
     );
   }
-}
 
+  addToGarden(plant: any) {
+    this.myGarden.push({ ...plant, planted: '', harvested: '', notes: '' });
+    this.searchResults = this.searchResults.filter(item => item !== plant);
+  }
+
+
+  removeFromGarden(plant: any) {
+    this.myGarden = this.myGarden.filter(item => item !== plant);
+  }
+}
