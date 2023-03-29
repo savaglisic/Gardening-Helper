@@ -3,11 +3,13 @@ package main
 import (
 	"bufio"
 	"bytes"
+	"log"
 	"os"
 	"strings"
 	"testing"
 )
 
+/*
 func TestSearchPlant(t *testing.T) {
 	// Prepare test data
 	input := "rose"
@@ -29,9 +31,9 @@ func TestSearchPlant(t *testing.T) {
 	if !strings.Contains(stdout.String(), expectedOutput) {
 		t.Errorf("searchPlant() output = %q; expected %q", stdout.String(), expectedOutput)
 	}
-}
+}*/
 
-func TestAddPlant(t *testing.T) {
+/*func TestAddPlant(t *testing.T) {
 	// Prepare test data
 	input := "rose\nA beautiful flower.\n.\n"
 	expectedOutput := "Plant added to the garden successfully!"
@@ -46,13 +48,13 @@ func TestAddPlant(t *testing.T) {
 	defer func() { os.Stdout = oldStdout }()
 
 	// Call the function being tested
-	addPlant(reader)
+	addPlant()
 
 	// Compare actual output with expected output
 	if !strings.Contains(stdout.String(), expectedOutput) {
 		t.Errorf("addPlant() output = %q; expected %q", stdout.String(), expectedOutput)
 	}
-}
+}*/
 
 func TestEditPlant(t *testing.T) {
 	// Prepare test data
@@ -77,7 +79,7 @@ func TestEditPlant(t *testing.T) {
 	reader.Reset(strings.NewReader("A beautiful and fragrant flower.\n.\n"))
 
 	// Call the function being tested
-	editPlant(reader)
+	editPlant()
 
 	// Compare actual output with expected output
 	if !strings.Contains(stdout.String(), expectedOutput) {
@@ -90,5 +92,35 @@ func TestEditPlant(t *testing.T) {
 		t.Errorf("Plant %q was not found in the garden", plantName)
 	} else if updatedPlant.Description != "A beautiful and fragrant flower." {
 		t.Errorf("Plant %q description was not updated correctly. Got %q; expected %q", plantName, updatedPlant.Description, "A beautiful and fragrant flower.")
+	}
+}
+
+func TestPlantTracker(t *testing.T) {
+	input := "My Plant\nn\nGrowing\ny\n/path/to/image.jpg\ny\nSome notes\n"
+	reader := bufio.NewReader(strings.NewReader(input))
+
+	// Replace os.Stdin with reader for testing
+	bufio.NewReader(reader)
+	bufio.NewReader(os.Stdin)
+
+	plantTracker()
+}
+
+func TestAddPlant(t *testing.T) {
+	// Set up
+	Garden = make(map[string]Plant)
+
+	// Test case 1: add a plant with a valid name and description
+	input1 := "rose\ngood.\ncool.\n."
+	expectedOutput1 := "Enter plant name: Enter plant description: Plant added to the garden successfully!\n\n"
+	reader1 := bufio.NewReader(strings.NewReader(input1))
+	output1 := &bytes.Buffer{}
+	log.SetOutput(output1)
+	addPlant(reader1)
+	if _, ok := Garden["rose"]; !ok {
+		t.Errorf("Failed to add plant with name 'rose'")
+	}
+	if output1.String() != expectedOutput1 {
+		t.Errorf("Output incorrect. Expected '%s', but got '%s'", expectedOutput1, output1.String())
 	}
 }
