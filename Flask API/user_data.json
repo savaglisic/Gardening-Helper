@@ -1,0 +1,23 @@
+[
+  {
+    "firstName": "Sava",
+    "lastName": "sads",
+    "email": "savaglisic9@gmail.com",
+    "password": "sava2290",
+    "confirmPassword": "sava2290"
+  },
+  {
+    "firstName": "tori",
+    "lastName": "glisic",
+    "email": "john@gmail.com",
+    "password": "sav2290",
+    "confirmPassword": "sava2290"
+  },
+  {
+    "firstName": "Test",
+    "lastName": "User",
+    "email": "test@ufl.edu",
+    "password": "test",
+    "confirmPassword": "test"
+  }
+]
