@@ -1,5 +1,36 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Directive, Input, HostListener } from '@angular/core';
+export { RouterLink} from '@angular/router';
+import { ComponentFixture } from '@angular/core/testing';
+import { LoginComponent } from './login/login.component';
+ 
+@Directive({
+  selector: '[routerLink]'
+})
+export class RouterLinkDirectiveStub {
+  @Input('routerLink') linkParams: any;
+  navigatedTo: any = null;
+ 
+  @HostListener('click')
+  onClick() {
+    this.navigatedTo = this.linkParams;
+  }
+}
+ 
+import { NgModule } from '@angular/core';
+ 
+@NgModule({
+  declarations: [
+    RouterLinkDirectiveStub
+  ]
+})
+export class RouterStubsModule {}
+
+describe('Test Karma', () => 
+it("should fail", function() {        
+  expect(true).toBe(false); })
+)
 
 describe('AppComponent', () => {
 beforeEach(async () => {
