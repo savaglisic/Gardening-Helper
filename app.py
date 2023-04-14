@@ -5,7 +5,7 @@ import openai
 
 app = Flask(__name__)
 
-openai.api_key = "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"
+openai.api_key = "openai_api-key"
 model = "text-davinci-002"  # change the model as needed
 
 def get_plant_details(plant_name):
