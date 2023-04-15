@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Plant Details</title>
-  </head>
-  <body>
-    <h1>Plant Details</h1>
-    <form method="POST">
-      <label for="plant_name">Enter the name of the plant:</label><br>
-      <input type="text" id="plant_name" name="plant_name"><br><br>
-      <label for="details">Select the details you want:</label><br>
-      <select name="details" id="details">
-        <option value="all">All Details</option>
-        <option value="scientific_name">Scientific Name</option>
-        <option value="flower_type">Flower Type</option>
-        <option value="seed_type">Seed Type</option>
-        <option value="season_type">Season Type</option>
-        <option value="ph">pH Level</option>
-        <option value="soil">Soil Type</option>
-        <option value="nutrition">Nutrition Need</option>
-        <option value="harvest">Harvest Time</option>
-        <option value="compatibility">Plant Compatibility</option>
-      </select><br><br>
-      <input type="submit" value="Submit">
-    </form>
-  </body>
-</html>
+<head>
+  <title>Plant Details </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <h1>Plant Details </h1>
+  <form action="/" method="post">
+    <input type="text" name="plant" placeholder="Enter a plant name" required />
+    <input type="submit" value="Get information" />
+  </form>
+  {% if result %}
+  <div class="result">
+    <h2>Information about: {{ request.form['plant'] }}</h2>
+
+
+    <table>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
+      {% for line in result.split("\n") %}
+      {% set parts = line.split(":") %}
+      <tr>
+        <td>{{ parts[0] }}</td>
+        <td>{{ parts[1] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+</body>
