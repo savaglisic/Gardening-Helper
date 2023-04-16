@@ -4,9 +4,14 @@ import { Component } from '@angular/core';
   selector: 'app-footer',
   template: `
     <footer class="footer">
-      <div class="container context has-text-centered">
-        <p> All your plant's needs are one click away! <p>
+    <div class="container is-widescreen">
+      <div class="notification has-text-success is-size-6 3rem has-text-centered">
+        <p>
+          All your gardening needs just a click away.
+          <br>-My Garden- -Alerts- -Gardening Goodies- -Our Mission- -Contact Us- 
+        </p>
       </div>
+    </div>
    </footer>
   `,
   styles: [
