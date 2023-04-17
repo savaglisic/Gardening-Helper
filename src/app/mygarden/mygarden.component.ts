@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-mygarden',
@@ -10,8 +11,18 @@ export class MygardenComponent {
   searchQuery: string = '';
   searchResults: any[] = [];
   myGarden: any[] = [];
+  currentUser: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+    if (this.currentUser) {
+      console.log('Current user:', this.currentUser);
+    } else {
+      console.log('No user is logged in');
+    }
+  }
 
   searchPlants() {
     this.http.get(`http://127.0.0.1:5000/search?query=${this.searchQuery}`).subscribe(
