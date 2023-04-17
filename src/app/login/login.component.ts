@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,11 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+      private router: Router,
+      private http: HttpClient,
+      private authService: AuthService
+  ) {}
 
   onSubmit(loginForm: NgForm) {
     const loginData = {
@@ -52,6 +57,7 @@ export class LoginComponent {
     this.http.post('http://127.0.0.1:5000/login', loginData).subscribe(
         (response) => {
           console.log(response);
+          this.authService.setCurrentUser(this.email);
           this.router.navigate(['/mygarden']);
         },
         (error) => {
