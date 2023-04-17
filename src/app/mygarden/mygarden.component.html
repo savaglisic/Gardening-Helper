@@ -1,0 +1,56 @@
+<h1 class="title mx-5">My Garden</h1>
+<p class="mx-5">Search our plant database by name:</p>
+<section>
+    <div class="field is-grouped mx-5 mb-5">
+        <p class="control">
+            <input class="input" [(ngModel)]="searchQuery" type="text" placeholder="Find a plant">
+        </p>
+        <p class="control">
+            <button class="button is-success" (click)="searchPlants()">
+                Search
+            </button>
+        </p>
+    </div>
+    <div *ngIf="searchResults.length > 0">
+        <table class="table is-fullwidth is-hoverable mx-5">
+            <thead>
+            <tr>
+                <th>Common Name</th>
+                <th>Scientific Name</th>
+                <th>Add</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let result of searchResults">
+                <td>{{ result.name }}</td>
+                <td>{{ result.scientificName }}</td>
+                <td><button class="button is-small is-success" (click)="addToGarden(result)">+</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table class="table is-fullwidth is-hoverable mx-5">
+            <thead>
+            <tr>
+                <th>Common Name</th>
+                <th>Scientific Name</th>
+                <th>Planted</th>
+                <th>Harvested</th>
+                <th>Notes</th>
+                <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plant of myGarden">
+                <td>{{ plant.name }}</td>
+                <td>{{ plant.scientificName }}</td>
+                <td><input class="input is-small" type="date" [(ngModel)]="plant.planted"></td>
+                <td><input class="input is-small" type="date" [(ngModel)]="plant.harvested"></td>
+                <td><input class="input is-small" type="text" [(ngModel)]="plant.notes"></td>
+                <td><button class="button is-small is-danger" (click)="removeFromGarden(plant)">-</button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
