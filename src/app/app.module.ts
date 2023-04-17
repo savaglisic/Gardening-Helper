@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormControl, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +14,7 @@ import { OurmissionComponent } from './ourmission/ourmission.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { MygardenComponent } from './mygarden/mygarden.component';
 import { GardeninggoodiesComponent } from './gardeninggoodies/gardeninggoodies.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { GardeninggoodiesComponent } from './gardeninggoodies/gardeninggoodies.c
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

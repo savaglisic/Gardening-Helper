@@ -1,53 +1,63 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   template: `
-  <div class="container has-text-centered">
-        <p class="title">
-         Welcome Back!
-       </p>
-       </div>
-    <html lang="en">
-
-<head>
-  
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Back!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-
-<body>
-    <div class="hero is-medium">
-        <div class="hero-body is-justify-content-center is-align-items-center">
-            <div class="columns is-flex is-flex-direction-column box">
-                <div class="column">
-                    <label for="email">Email</label>
-                    <input class="input is-primary" type="text" placeholder="Email address">
-                </div>
-                <div class="column">
-                    <label for="Name">Password</label>
-                    <input class="input is-primary" type="password" placeholder="Password">
-                    <a href="forget.html" class="is-size-7 has-text-primary">Forget password?</a>
-                </div>
-                <div class="column">
-                    <button class="button is-primary is-fullwidth" type="submit">Login</button>
-                </div>
-                <div class="has-text-centered">
-                    <p class="is-size-7"> Don't have an account? <a href="#" class="has-text-primary">Sign up</a>
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div class="container has-text-centered">
+      <p class="title">Welcome Back!</p>
     </div>
-</body>
-</html>
+    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+      <div class="hero is-medium">
+        <div class="hero-body is-justify-content-center is-align-items-center">
+          <div class="columns is-flex is-flex-direction-column box">
+            <div class="column">
+              <label for="email">Email</label>
+              <input class="input is-primary" type="text" placeholder="Email address" name="email" [(ngModel)]="email" required>
+            </div>
+            <div class="column">
+              <label for="Name">Password</label>
+              <input class="input is-primary" type="password" placeholder="Password" name="password" [(ngModel)]="password" required>
+              <a href="forget.html" class="is-size-7 has-text-primary">Forget password?</a>
+            </div>
+            <div class="column">
+              <button class="button is-primary is-fullwidth" type="submit" [disabled]="loginForm.invalid">Login</button>
+            </div>
+            <div class="has-text-centered">
+              <p class="is-size-7"> Don't have an account? <a href="#" class="has-text-primary">Sign up</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
   `,
   styles: [
   ]
 })
 export class LoginComponent {
+  email: string = '';
+  password: string = '';
 
+  constructor(private router: Router, private http: HttpClient) {}
+
+  onSubmit(loginForm: NgForm) {
+    const loginData = {
+      email: this.email,
+      password: this.password,
+    };
+
+    this.http.post('http://127.0.0.1:5000/login', loginData).subscribe(
+        (response) => {
+          console.log(response);
+          this.router.navigate(['/mygarden']);
+        },
+        (error) => {
+          console.error(error);
+          alert("Invalid email or password. Please try again.");
+        }
+    );
+  }
 }
