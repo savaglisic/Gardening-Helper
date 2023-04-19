@@ -1,7 +1,19 @@
-<h1 class="title mx-5">My Garden</h1>
-<p class="mx-5">Search our plant database by name:</p>
+<div class="container is-widescreen">
+    <div class="tile is-ancestor">
+    <div class="tile is-vertical is-12">
+      <div class="tile">
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+              <p class="title">Garden Goodies</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+<p class="mx-6">Search our plant database by name:</p>
 <section>
-    <div class="field is-grouped mx-5 mb-5">
+    <div class="field is-grouped mx-6 mb-6">
         <p class="control">
             <input class="input" [(ngModel)]="searchQuery" type="text" placeholder="Find a plant">
         </p>

@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       <div class="notification has-text-success is-size-6 3rem has-text-centered">
         <p>
           All your gardening needs just a click away.
-          <br>-My Garden- -Alerts- -Gardening Goodies- -Our Mission- -Contact Us- 
+          <!-- <br>-My Garden- -Alerts- -Gardening Goodies- -Our Mission- -Contact Us-  -->
         </p>
       </div>
     </div>

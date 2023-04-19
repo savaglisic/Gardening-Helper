@@ -6,9 +6,21 @@ import { RouterLink } from '@angular/router';
   selector: 'app-contact',
   template: `
 
+<div class="container is-widescreen">
+  <div class="tile is-ancestor">
+  <div class="tile is-vertical is-12">
+    <div class="tile">
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-success">
+            <p class="title">Contact Us</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 <section class="section">
 <div class="container">
-    <h2 class="title is-2 is-capitalized">Contact Us</h2>
     <form (ngSubmit)="submitForm(contactForm)" #contactForm="ngForm" action="" method="post">
         <div class="field">
             <label for="name" class="label is-size-4 has-text-weight-light"></label>
