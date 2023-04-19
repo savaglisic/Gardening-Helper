@@ -7,8 +7,20 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-signup',
   template: `
+   <div class="container is-widescreen">
+  <div class="tile is-ancestor">
+  <div class="tile is-vertical is-12">
+    <div class="tile">
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-success">
+            <p class="title">Join Our Gardening Family!</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
     <div class="container">
-      <h2 class="title is-2 is-capitalized has-text-centered">Join Our Gardening Family</h2>
       <form (ngSubmit)="onSubmit(signupForm)" #signupForm="ngForm" method="post">
         <div class="columns">
           <div class="column">
@@ -93,7 +105,7 @@ import { HttpClient } from '@angular/common/http';
           </p>
         </div>
 
-        <button type="submit" class="button is-primary is-fullwidth" [disabled]="signupForm.invalid">Sign Up</button>
+        <button type="submit" class="button is-success is-fullwidth" [disabled]="signupForm.invalid">Sign Up</button>
       </form>
     </div>
   `,

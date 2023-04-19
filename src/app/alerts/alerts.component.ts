@@ -4,9 +4,22 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-alerts',
   template: `
+  <div class="container is-widescreen">
+  <div class="tile is-ancestor">
+  <div class="tile is-vertical is-12">
+    <div class="tile">
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-success">
+            <p class="title">Alerts</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
     <section class="section">
       <div class="container">
-        <h2 class="title is-2 is-capitalized">Set Alert</h2>
+        <h2 class="subtitle is-3 is-capitalized">Set Alert</h2>
         <form (ngSubmit)="submitForm(alertForm)" #alertForm="ngForm" action="" method="post">
           <div class="field">
             <label for="date" class="label is-size-4 has-text-weight-light">Date:</label>
