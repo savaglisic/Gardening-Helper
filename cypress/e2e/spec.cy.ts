@@ -59,7 +59,6 @@ describe('Check SignUp', () => {
     cy.get("input[name='firstName']").type("FirstName");
     cy.get("input[name='lastName']").type("LastName");
     cy.get("input[name='email']").type("testemail@mail.com");
-    cy.get("input[name='username']").type("userName");
     cy.get("input[name='password']").type("Password");
     cy.get("input[name='confirmPassword']").type("Password");
 
@@ -67,3 +66,17 @@ describe('Check SignUp', () => {
 
   });
 });
+
+describe('Click Event', () => {
+  it('Check Amazon Links', () => {
+    cy.visit('http://localhost:4200/gardeninggoodies')
+
+    cy.get('a').should('have.attr', 'href', 'https://amazon.com')
+
+    cy.contains('Buy').click({ force: true },{multiple: true}).should('have.attr', 'https://amazon.com')
+    cy.location('pathname').should('eq', '/mygarden')
+
+    cy.get('a').invoke('removeAttr', 'target').click({multiple: true})
+    cy.url().should('include', 'amazon.com')    
+  })
+})
