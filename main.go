@@ -150,11 +150,7 @@ func searchPlant() {
 	fmt.Println("--------------")
 	fmt.Printf("Common Name: %s\n", plant.CommonName)
 	fmt.Printf("Scientific Name: %s\n", plant.ScientificName)
-	fmt.Printf("Slug: %s\n", plant.Slug)
-	fmt.Printf("Rank: %s\n", plant.Rank)
-	fmt.Println("Genus: ", plant.Genus)
-	fmt.Println("Family common name: ", plant.Family)
-	fmt.Printf("Is Vegetable: %t\n", plant.Vegetable)
+
 	fmt.Println()
 
 	// Prompt the user to add the plant to their garden
