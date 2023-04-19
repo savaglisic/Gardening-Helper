@@ -28,6 +28,9 @@ import { Component } from '@angular/core';
       <a class="navbar-item" routerLink="/ourmission">
         Our Mission
       </a>
+      <a class="navbar-item" routerLink="/compare">
+        Compare
+      </a>
       <a class="navbar-item" routerLink="/contact">
         Contact Us
       </a>
