@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { MygardenComponent } from './mygarden/mygarden.component';
 import { OurmissionComponent } from './ourmission/ourmission.component';
 import { SignupComponent } from './signup/signup.component';
+import { CompareComponent } from './compare/compare.component';
 
 const routes: Routes = [
   {path:'', component: HomepageComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'alerts',component: AlertsComponent},
   {path: 'mygarden',component: MygardenComponent},
   {path: 'goodies',component: GardeninggoodiesComponent},
-  {path: 'ourmission',component: OurmissionComponent}
+  {path: 'ourmission',component: OurmissionComponent},
+  {path: 'compare',component: CompareComponent}
 ];
 
 @NgModule({

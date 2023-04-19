@@ -14,6 +14,7 @@ import { OurmissionComponent } from './ourmission/ourmission.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { MygardenComponent } from './mygarden/mygarden.component';
 import { GardeninggoodiesComponent } from './gardeninggoodies/gardeninggoodies.component';
+import { CompareComponent } from './compare/compare.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { GardeninggoodiesComponent } from './gardeninggoodies/gardeninggoodies.c
     OurmissionComponent,
     AlertsComponent,
     MygardenComponent,
-    GardeninggoodiesComponent
+    GardeninggoodiesComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,
