@@ -1,0 +1,67 @@
+[
+  {
+    "firstName": "Sava",
+    "lastName": "sads",
+    "email": "savaglisic9@gmail.com",
+    "password": "sava2290",
+    "confirmPassword": "sava2290",
+    "garden": [
+      {
+        "harvested": "2023-05-25",
+        "name": "Cucumber",
+        "notes": "need to buy seeds",
+        "planted": "2023-04-27",
+        "scientificName": "Cucumis sativus"
+      },
+      {
+        "harvested": "2023-06-01",
+        "name": "Alpine strawberry",
+        "notes": "Doing well so far",
+        "planted": "2023-04-12",
+        "scientificName": "Fragaria vesca"
+      },
+      {
+        "harvested": "",
+        "name": "American blueberry",
+        "notes": "berry",
+        "planted": "",
+        "scientificName": "Vaccinium corymbosum"
+      },
+      {
+        "harvested": "",
+        "name": "Evergreen blueberry",
+        "notes": "berry",
+        "planted": "",
+        "scientificName": "Vaccinium myrsinites"
+      },
+      {
+        "harvested": "",
+        "name": "Common oak fern",
+        "notes": "",
+        "planted": "",
+        "scientificName": "Gymnocarpium dryopteris"
+      },
+      {
+        "harvested": "2023-05-31",
+        "name": "Downy oak",
+        "notes": "Need to get seeds",
+        "planted": "2023-04-20",
+        "scientificName": "Quercus pubescens"
+      }
+    ]
+  },
+  {
+    "firstName": "tori",
+    "lastName": "glisic",
+    "email": "john@gmail.com",
+    "password": "sav2290",
+    "confirmPassword": "sava2290"
+  },
+  {
+    "firstName": "Test",
+    "lastName": "User",
+    "email": "test@ufl.edu",
+    "password": "test",
+    "confirmPassword": "test"
+  }
+]
