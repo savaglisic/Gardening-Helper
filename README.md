@@ -1,7 +1,7 @@
 # Gardening-Helper
 
 #  Description
-Gardening-Helper is the ultimate gardening companion for green thumbs and beginners alike. Keep track of your plants and their progress with the "My Garden" page, and never miss a planting or harvesting date with the "Alerts" page. The "All Plants" page functions as a searchable database of plants, and the "Purchase" page links you to the best seeds and gardening products. The "Plant Tracker" allows you to upload images and notes about your plants' growth, and "Season Tracker" sends you push notifications or emails to remind you when it's planting season for your favorite plants. The "Pet Safe" feature ensures your furry friends stay safe while you garden, "Plant Compatibility" helps you plan your garden and "Soil and Nutrient Recommendations" helps you give your plants the best care. With "Gardening Helper", you'll have a beautiful and thriving garden in no time.
+Garden-Helper is the ultimate gardening companion for green thumbs and beginners alike. Keep track of your plants and their progress with the "My Garden" page, and never miss a planting or harvesting date with the "Alerts" page. The "All Plants" page functions as a searchable database of plants, and the "Purchase" page links you to the best seeds and gardening products. The "Plant Tracker" allows you to upload images and notes about your plants' growth, and "Season Tracker" sends you push notifications or emails to remind you when it's planting season for your favorite plants. The "Pet Safe" feature ensures your furry friends stay safe while you garden, "Plant Compatibility" helps you plan your garden and "Soil and Nutrient Recommendations" helps you give your plants the best care. With "Garden Helper", you'll have a beautiful and thriving garden in no time.
   
 Login Page with usernames  
 -“Alerts” page that fills with notifications on when to plant, harvest, etc  
@@ -21,4 +21,4 @@ Shalini Patel - Back End
 Sava Glisic - Back End
 
 # How to Deploy
-Gardening-Helper has an Angular front end and a Python/Golang backend supported by a Flask web server. In order to test, the main.go and main.py files must be places in the same directory, then simply execute the python file assuming you have all necessary dependencies installed. The front end requires the use of the Angular CLI. The 'ng serve' command builds the project.
+Garden-Helper has an Angular front end and a Python/Golang backend supported by a Flask web server. In order to test, the main.go and main.py files must be places in the same directory, then simply execute the python file assuming you have all necessary dependencies installed. The front end requires the use of the Angular CLI. The 'ng serve' command builds the project. You will also need to add an OPEN AI api key to the top of the python file.
