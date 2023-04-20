@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
     <div class="tile">
         <div class="tile is-parent">
           <article class="tile is-child notification is-success">
-            <p class="title">Garden Goodies</p>
+            <p class="title">Gardening Goodies</p>
           </article>
         </div>
       </div>
